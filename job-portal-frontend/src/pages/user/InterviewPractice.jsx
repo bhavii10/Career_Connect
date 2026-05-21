@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Timer, Brain, CheckCircle, Trophy, Clock } from "lucide-react";
 import "./InterviewPractice.css";
+import { API_BASE_URL } from "../../config";
 
 const InterviewPractice = () => {
   const location = useLocation();
@@ -117,7 +118,7 @@ const InterviewPractice = () => {
     };
 
     try {
-      await axios.post("http://localhost:5001/api/scores", scoreData);
+      await axios.post(`${API_BASE_URL}/api/scores`, scoreData);
     } catch (err) {
       console.error("Error saving score:", err);
     }

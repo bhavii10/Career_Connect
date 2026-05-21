@@ -66,6 +66,7 @@
 //Corrected code storing in mongoDB
 import React, { useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../../config";
 
 const LoginSignup = ({ role, setUser }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -120,7 +121,7 @@ const LoginSignup = ({ role, setUser }) => {
     if (isLogin) {
       console.log("hi");
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${API_BASE_URL}/api/auth/login`,
         { email: form.email, password: form.password },
         { withCredentials: true }
       );
@@ -136,7 +137,7 @@ const LoginSignup = ({ role, setUser }) => {
       setUser(user);
     } else {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/signup",
+        `${API_BASE_URL}/api/auth/signup`,
         { ...form, role }
       );
       console.log("Signup Response:", res);

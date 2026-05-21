@@ -3,6 +3,7 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import axios from "axios";
 import "./ResumeBuilder.css";
+import { API_BASE_URL } from "../../config";
 
 export default function ResumeBuilder() {
 
@@ -191,7 +192,7 @@ export default function ResumeBuilder() {
     try {
 
       const res = await axios.post(
-        "http://localhost:5000/api/resumes",
+        `${API_BASE_URL}/api/resumes`,
         payload,
         {
           headers: {

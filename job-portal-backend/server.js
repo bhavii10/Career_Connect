@@ -37,9 +37,10 @@ mongoose
 // =========================
 // ⚙️ Middleware Setup
 // =========================
+const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
 app.use(
   cors({
-    origin: "http://localhost:3000", // your React frontend
+    origin: [frontendUrl, "http://localhost:3000"],
     credentials: true,
   })
 );
@@ -79,6 +80,8 @@ const applicationsRouter = require("./routes/applications");
 const resumeRoutes = require("./routes/resumeRoutes");
 const notificationRoutes = require("./routes/notifications");
 const analyticsRoutes = require("./routes/analyticsRoutes"); // ✅ renamed to match actual file name
+const interviewPrepRoutes = require("./routes/interviewPrep");
+const scoreRoutes = require("./routes/scores");
 
 // =========================
 // 🚀 Test Endpoint
@@ -97,6 +100,8 @@ app.use("/api/resumes", resumeRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/analytics", analyticsRoutes); // ✅ analytics route mounted directly
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/interview-prep", interviewPrepRoutes);
+app.use("/api/scores", scoreRoutes);
 
 // =========================
 // ⚠️ Global Error Handler
@@ -112,5 +117,5 @@ app.use((err, req, res, next) => {
 // =========================
 // 🏁 Start Server
 // =========================
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

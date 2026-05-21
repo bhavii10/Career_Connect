@@ -271,6 +271,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./NotificationPage.css";
+import { API_BASE_URL } from "../../config";
 
 export default function NotificationPage() {
   const [notifications, setNotifications] = useState([]);
@@ -288,7 +289,7 @@ export default function NotificationPage() {
 
     const fetchNotifications = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/notifications/${userId}`);
+        const res = await axios.get(`${API_BASE_URL}/api/notifications/${userId}`);
         setNotifications(res.data);
       } catch (err) {
         console.error("❌ Error fetching notifications:", err);
@@ -303,7 +304,7 @@ export default function NotificationPage() {
 
   const markAsRead = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/notifications/${id}/read`);
+      await axios.put(`${API_BASE_URL}/api/notifications/${id}/read`);
       setNotifications((prev) =>
         prev.map((n) => (n._id === id ? { ...n, isRead: true } : n))
       );

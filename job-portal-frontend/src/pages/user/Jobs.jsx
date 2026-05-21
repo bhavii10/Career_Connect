@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Jobs.css";
+import { API_BASE_URL } from "../../config";
 import { Briefcase, MapPin, UserPlus } from "lucide-react";
 import { createPortal } from "react-dom";
 
@@ -23,7 +24,7 @@ export default function Jobs() {
 
   const fetchJobs = async (search = "") => {
     try {
-      const res = await axios.get("http://localhost:5000/api/jobs", {
+      const res = await axios.get(`${API_BASE_URL}/api/jobs`, {
         params: search ? { search } : {},
       });
 
@@ -68,7 +69,7 @@ export default function Jobs() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/applications",
+        `${API_BASE_URL}/api/applications`,
         formData
       );
 

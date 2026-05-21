@@ -161,6 +161,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Navbar.css";
+import { API_BASE_URL } from "../config";
 
 export default function Navbar({ user, setUser, role = "user" }) {
   const [showAuth, setShowAuth] = useState(false);
@@ -181,7 +182,7 @@ export default function Navbar({ user, setUser, role = "user" }) {
       if (isLogin) {
         // ✅ LOGIN (NO ROLE SENT)
         const res = await axios.post(
-          "http://localhost:5000/api/auth/login",
+          `${API_BASE_URL}/api/auth/login`,
           {
             email: form.email,
             password: form.password,
@@ -208,7 +209,7 @@ export default function Navbar({ user, setUser, role = "user" }) {
       } else {
         // ✅ SIGNUP (ROLE REQUIRED)
         await axios.post(
-          "http://localhost:5000/api/auth/signup",
+          `${API_BASE_URL}/api/auth/signup`,
           { ...form, role },
           { withCredentials: true }
         );
@@ -229,7 +230,7 @@ export default function Navbar({ user, setUser, role = "user" }) {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        `${API_BASE_URL}/api/auth/logout`,
         {},
         { withCredentials: true }
       );

@@ -140,6 +140,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ManageApplicants.css"; // Import the CSS file
+import { API_BASE_URL } from "../../config";
 
 export default function ManageApplicants() {
   const [applicants, setApplicants] = useState([]);
@@ -147,7 +148,7 @@ export default function ManageApplicants() {
   // Fetch all applicants
   const fetchApplicants = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/applications");
+      const res = await axios.get(`${API_BASE_URL}/api/applications`);
       setApplicants(res.data || []);
     } catch (err) {
       console.error("❌ Error fetching applicants:", err);
@@ -163,7 +164,7 @@ export default function ManageApplicants() {
   const handleStatusChange = async (id, status) => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/applications/${id}/status`,
+        `${API_BASE_URL}/api/applications/${id}/status`,
         { status }
       );
 
@@ -183,7 +184,7 @@ export default function ManageApplicants() {
   // Handle delete applicant
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/applications/${id}`);
+      await axios.delete(`${API_BASE_URL}/api/applications/${id}`);
 
       // Remove from state
       setApplicants((prev) => prev.filter((app) => app.id !== id));
@@ -222,7 +223,7 @@ export default function ManageApplicants() {
                     <td>
                       {app.resumeFilename ? (
                         <a
-                          href={`http://localhost:5000/api/applications/resume/${app.resumeId}`}
+                          href={`${API_BASE_URL}/api/applications/resume/${app.resumeId}`}
                           target="_blank"
                           rel="noreferrer"
                         >

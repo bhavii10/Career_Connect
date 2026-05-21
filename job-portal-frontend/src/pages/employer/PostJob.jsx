@@ -99,6 +99,7 @@
 
 import React, { useState } from "react";
 import "./PostJob.css";
+import { API_BASE_URL } from "../../config";
 
 const PostJob = () => {
   const [jobData, setJobData] = useState({
@@ -122,7 +123,7 @@ const PostJob = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/jobs", {
+      const res = await fetch(`${API_BASE_URL}/api/jobs`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
