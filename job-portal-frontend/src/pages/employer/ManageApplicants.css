@@ -197,3 +197,55 @@ a:hover {
     font-size: 0.8rem;
   }
 }
+
+
+/* ================= AI SCORE ================= */
+
+.score-badge {
+
+  padding: 0.45rem 0.9rem;
+
+  border-radius: 999px;
+
+  font-weight: 700;
+
+  color: white;
+
+  display: inline-block;
+
+  min-width: 70px;
+}
+
+.high-score {
+
+  background: linear-gradient(
+    135deg,
+    #16a34a,
+    #22c55e
+  );
+}
+
+.medium-score {
+
+  background: linear-gradient(
+    135deg,
+    #6b21a8,
+    #8b5cf6
+  );
+}
+
+.low-score {
+
+  background: linear-gradient(
+    135deg,
+    #7a12db,
+    #d13c3c
+  );
+}
+
+.top-candidate {
+
+  color: #f59e0b;
+
+  font-weight: 700;
+}

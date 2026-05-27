@@ -17,6 +17,35 @@ const applicationSchema = new mongoose.Schema(
       contentType: String,
       filename: String,
     },
+    skills: {
+      type: [String],
+      default: [],
+    },
+
+    atsScore: {
+      type: Number,
+      default: 0,
+    },
+
+    experienceScore: {
+      type: Number,
+      default: 0,
+    },
+
+    projectScore: {
+      type: Number,
+      default: 0,
+    },
+
+    aiScore: {
+      type: Number,
+      default: 0,
+    },
+
+    recommendation: {
+      type: String,
+      default: "Moderate Fit",
+    },
   },
   { timestamps: true }
 );

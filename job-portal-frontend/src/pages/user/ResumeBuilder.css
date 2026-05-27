@@ -504,3 +504,57 @@
   margin-bottom: 0.35rem;
   line-height: 1.5;
 }
+
+/* ================= AI ANALYSIS ================= */
+
+.ai-analysis-card {
+
+  width: 100%;
+
+  max-width: 1150px;
+
+  margin-bottom: 1.5rem;
+
+  background: rgba(255,255,255,0.9);
+
+  backdrop-filter: blur(10px);
+
+  border-radius: 18px;
+
+  padding: 1.5rem;
+
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.ai-analysis-card h2 {
+
+  color: #6b21a8;
+
+  margin-bottom: 1rem;
+}
+
+.ai-analysis-card h3 {
+
+  font-size: 2rem;
+
+  color: #1e3a8a;
+
+  margin-bottom: 1rem;
+}
+
+.ai-section {
+
+  margin-top: 1rem;
+}
+
+.ai-section ul {
+
+  margin-top: 0.5rem;
+
+  padding-left: 1.5rem;
+}
+
+.ai-section li {
+
+  margin-bottom: 0.4rem;
+}

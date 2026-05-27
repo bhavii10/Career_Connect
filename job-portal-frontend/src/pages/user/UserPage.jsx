@@ -148,7 +148,7 @@ export default function UserPage({ user, setUser, role }) {
               <span className="highlight">Boost Your Career</span>
             </h1>
 
-            <p className="subtitle">
+            <p className="sub">
               Explore tools to build your resume, prepare for
               interviews, and apply to top companies seamlessly.
             </p>

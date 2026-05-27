@@ -82,6 +82,7 @@ const notificationRoutes = require("./routes/notifications");
 const analyticsRoutes = require("./routes/analyticsRoutes"); // ✅ renamed to match actual file name
 const interviewPrepRoutes = require("./routes/interviewPrep");
 const scoreRoutes = require("./routes/scores");
+const aiRoutes = require("./routes/aiRoutes");
 
 // =========================
 // 🚀 Test Endpoint
@@ -102,6 +103,7 @@ app.use("/api/analytics", analyticsRoutes); // ✅ analytics route mounted direc
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/interview-prep", interviewPrepRoutes);
 app.use("/api/scores", scoreRoutes);
+app.use("/api/ai", aiRoutes);
 
 // =========================
 // ⚠️ Global Error Handler

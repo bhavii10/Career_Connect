@@ -49,7 +49,7 @@ export default function RecruiterPage({ user, setUser }) {
               </span>
             </h1>
 
-            <p className="subtitle">
+            <p className="sub">
               Post jobs, manage applicants, and
               streamline your recruitment process
               efficiently.

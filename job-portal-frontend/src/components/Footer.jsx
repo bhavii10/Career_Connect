@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 export default function Footer() {
   return (
     <footer id="footer" className="footer">
-      <p>© 2025 Job Portal | All Rights Reserved</p>
+      <p>© 2026 Career Connect | All Rights Reserved</p>
 
       <div className="footer-links">
         <a href="/">Home</a>

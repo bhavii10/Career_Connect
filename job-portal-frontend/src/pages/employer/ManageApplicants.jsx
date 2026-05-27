@@ -1,6 +1,146 @@
+// // import React, { useEffect, useState } from "react";
+// // import axios from "axios";
+// // import "./ManageApplicants.css"; // Import the CSS file
+
+// // export default function ManageApplicants() {
+// //   const [applicants, setApplicants] = useState([]);
+
+// //   // Fetch all applicants
+// //   const fetchApplicants = async () => {
+// //     try {
+// //       const res = await axios.get("http://localhost:5000/api/applications");
+// //       setApplicants(res.data || []);
+// //     } catch (err) {
+// //       console.error("❌ Error fetching applicants:", err);
+// //       setApplicants([]);
+// //     }
+// //   };
+
+// //   useEffect(() => {
+// //     fetchApplicants();
+// //   }, []);
+
+// //   // Handle status update (accept/reject)
+// //   const handleStatusChange = async (id, status) => {
+// //     try {
+// //       const res = await axios.put(
+// //         `http://localhost:5000/api/applications/${id}/status`,
+// //         { status }
+// //       );
+
+// //       console.log("✅ Status updated response:", res.data);
+
+// //       // Update state immediately
+// //       setApplicants((prev) =>
+// //         prev.map((app) =>
+// //           app.id === id ? { ...app, status: res.data.application.status } : app
+// //         )
+// //       );
+// //     } catch (err) {
+// //       console.error("❌ Error updating status:", err);
+// //     }
+// //   };
+
+// //   // Handle delete applicant
+// //   const handleDelete = async (id) => {
+// //     try {
+// //       await axios.delete(`http://localhost:5000/api/applications/${id}`);
+
+// //       // Remove from state
+// //       setApplicants((prev) => prev.filter((app) => app.id !== id));
+// //     } catch (err) {
+// //       console.error("❌ Error deleting applicant:", err);
+// //     }
+// //   };
+
+// //   return (
+// //     <div className="manage-container">
+// //       <div className="background"></div>
+// //       <div className="content-box">
+// //         <h1 className="title">👥 Manage Applicants</h1>
+// //         {applicants.length === 0 ? (
+// //           <p className="no-data">No applicants yet.</p>
+// //         ) : (
+// //           <div className="table-wrapper">
+// //             <table className="applicants-table">
+// //               <thead>
+// //                 <tr>
+// //                   <th>Name</th>
+// //                   <th>Email</th>
+// //                   <th>Phone</th>
+// //                   <th>Resume</th>
+// //                   <th>Status</th>
+// //                   <th>Job ID</th>
+// //                   <th>Actions</th>
+// //                 </tr>
+// //               </thead>
+// //               <tbody>
+// //                 {applicants.map((app) => (
+// //                   <tr key={app.id}>
+// //                     <td>{app.name}</td>
+// //                     <td>{app.email}</td>
+// //                     <td>{app.phone}</td>
+// //                     <td>
+// //                       {app.resumeFilename ? (
+// //                         <a
+// //                           href={`http://localhost:5000/api/applications/resume/${app.resumeId}`}
+// //                           target="_blank"
+// //                           rel="noreferrer"
+// //                         >
+// //                           {app.resumeFilename}
+// //                         </a>
+// //                       ) : (
+// //                         "No Resume"
+// //                       )}
+// //                     </td>
+// //                     <td>{app.status || "pending"}</td>
+// //                     <td>{app.jobId}</td>
+// //                     <td>
+// //                       {app.status === "accepted" ? (
+// //                         <span className="accepted-label">✔ Accepted</span>
+// //                       ) : app.status === "rejected" ? (
+// //                         <button
+// //                           className="delete-btn"
+// //                           onClick={() => handleDelete(app.id)}
+// //                         >
+// //                           Delete
+// //                         </button>
+// //                       ) : (
+// //                         <>
+// //                           <button
+// //                             className="accept-btn"
+// //                             onClick={() => handleStatusChange(app.id, "accepted")}
+// //                           >
+// //                             Accept
+// //                           </button>
+// //                           <button
+// //                             className="reject-btn"
+// //                             onClick={() => handleStatusChange(app.id, "rejected")}
+// //                           >
+// //                             Reject
+// //                           </button>
+// //                         </>
+// //                       )}
+// //                     </td>
+// //                   </tr>
+// //                 ))}
+// //               </tbody>
+// //             </table>
+// //           </div>
+// //         )}
+// //       </div>
+// //     </div>
+// //   );
+// // }
+
+
+
+
+
 // import React, { useEffect, useState } from "react";
 // import axios from "axios";
 // import "./ManageApplicants.css"; // Import the CSS file
+// import { API_BASE_URL } from "../../config";
 
 // export default function ManageApplicants() {
 //   const [applicants, setApplicants] = useState([]);
@@ -8,7 +148,7 @@
 //   // Fetch all applicants
 //   const fetchApplicants = async () => {
 //     try {
-//       const res = await axios.get("http://localhost:5000/api/applications");
+//       const res = await axios.get(`${API_BASE_URL}/api/applications`);
 //       setApplicants(res.data || []);
 //     } catch (err) {
 //       console.error("❌ Error fetching applicants:", err);
@@ -24,7 +164,7 @@
 //   const handleStatusChange = async (id, status) => {
 //     try {
 //       const res = await axios.put(
-//         `http://localhost:5000/api/applications/${id}/status`,
+//         `${API_BASE_URL}/api/applications/${id}/status`,
 //         { status }
 //       );
 
@@ -44,7 +184,7 @@
 //   // Handle delete applicant
 //   const handleDelete = async (id) => {
 //     try {
-//       await axios.delete(`http://localhost:5000/api/applications/${id}`);
+//       await axios.delete(`${API_BASE_URL}/api/applications/${id}`);
 
 //       // Remove from state
 //       setApplicants((prev) => prev.filter((app) => app.id !== id));
@@ -83,7 +223,7 @@
 //                     <td>
 //                       {app.resumeFilename ? (
 //                         <a
-//                           href={`http://localhost:5000/api/applications/resume/${app.resumeId}`}
+//                           href={`${API_BASE_URL}/api/applications/resume/${app.resumeId}`}
 //                           target="_blank"
 //                           rel="noreferrer"
 //                         >
@@ -134,141 +274,286 @@
 // }
 
 
+import React, {
+  useEffect,
+  useState,
+} from "react";
 
-
-
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./ManageApplicants.css"; // Import the CSS file
-import { API_BASE_URL } from "../../config";
+
+import "./ManageApplicants.css";
+
+import {
+  API_BASE_URL,
+} from "../../config";
 
 export default function ManageApplicants() {
-  const [applicants, setApplicants] = useState([]);
 
-  // Fetch all applicants
-  const fetchApplicants = async () => {
-    try {
-      const res = await axios.get(`${API_BASE_URL}/api/applications`);
-      setApplicants(res.data || []);
-    } catch (err) {
-      console.error("❌ Error fetching applicants:", err);
-      setApplicants([]);
-    }
-  };
+  const [applicants,
+    setApplicants] =
+      useState([]);
+
+  const fetchApplicants =
+    async () => {
+
+      try {
+
+        const res =
+          await axios.get(
+            `${API_BASE_URL}/api/applications`
+          );
+
+        setApplicants(
+          res.data || []
+        );
+
+      } catch (err) {
+
+        console.error(err);
+
+        setApplicants([]);
+      }
+    };
 
   useEffect(() => {
     fetchApplicants();
   }, []);
 
-  // Handle status update (accept/reject)
-  const handleStatusChange = async (id, status) => {
-    try {
-      const res = await axios.put(
-        `${API_BASE_URL}/api/applications/${id}/status`,
-        { status }
-      );
+  const handleStatusChange =
+    async (id, status) => {
 
-      console.log("✅ Status updated response:", res.data);
+      try {
 
-      // Update state immediately
-      setApplicants((prev) =>
-        prev.map((app) =>
-          app.id === id ? { ...app, status: res.data.application.status } : app
-        )
-      );
-    } catch (err) {
-      console.error("❌ Error updating status:", err);
-    }
-  };
+        const res =
+          await axios.put(
+            `${API_BASE_URL}/api/applications/${id}/status`,
+            { status }
+          );
 
-  // Handle delete applicant
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`${API_BASE_URL}/api/applications/${id}`);
+        setApplicants(
+          (prev) =>
+            prev.map((app) =>
+              app.id === id
+                ? {
+                    ...app,
+                    status:
+                      res.data.application.status,
+                  }
+                : app
+            )
+        );
 
-      // Remove from state
-      setApplicants((prev) => prev.filter((app) => app.id !== id));
-    } catch (err) {
-      console.error("❌ Error deleting applicant:", err);
-    }
-  };
+      } catch (err) {
+
+        console.error(err);
+      }
+    };
+
+  const handleDelete =
+    async (id) => {
+
+      try {
+
+        await axios.delete(
+          `${API_BASE_URL}/api/applications/${id}`
+        );
+
+        setApplicants(
+          (prev) =>
+            prev.filter(
+              (app) =>
+                app.id !== id
+            )
+        );
+
+      } catch (err) {
+
+        console.error(err);
+      }
+    };
 
   return (
     <div className="manage-container">
+
       <div className="background"></div>
+
       <div className="content-box">
-        <h1 className="title">👥 Manage Applicants</h1>
+
+        <h1 className="title">
+          🤖 AI Manage Applicants
+        </h1>
+
         {applicants.length === 0 ? (
-          <p className="no-data">No applicants yet.</p>
+
+          <p className="no-data">
+            No applicants yet.
+          </p>
+
         ) : (
+
           <div className="table-wrapper">
+
             <table className="applicants-table">
+
               <thead>
+
                 <tr>
+
                   <th>Name</th>
+
                   <th>Email</th>
-                  <th>Phone</th>
+
                   <th>Resume</th>
+
                   <th>Status</th>
-                  <th>Job ID</th>
+
+                  <th>ATS Score</th>
+
+                  <th>Recommendation</th>
+
                   <th>Actions</th>
+
                 </tr>
+
               </thead>
+
               <tbody>
-                {applicants.map((app) => (
-                  <tr key={app.id}>
-                    <td>{app.name}</td>
-                    <td>{app.email}</td>
-                    <td>{app.phone}</td>
-                    <td>
-                      {app.resumeFilename ? (
-                        <a
-                          href={`${API_BASE_URL}/api/applications/resume/${app.resumeId}`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {app.resumeFilename}
-                        </a>
-                      ) : (
-                        "No Resume"
-                      )}
-                    </td>
-                    <td>{app.status || "pending"}</td>
-                    <td>{app.jobId}</td>
-                    <td>
-                      {app.status === "accepted" ? (
-                        <span className="accepted-label">✔ Accepted</span>
-                      ) : app.status === "rejected" ? (
-                        <button
-                          className="delete-btn"
-                          onClick={() => handleDelete(app.id)}
-                        >
-                          Delete
-                        </button>
-                      ) : (
-                        <>
-                          <button
-                            className="accept-btn"
-                            onClick={() => handleStatusChange(app.id, "accepted")}
+
+                {applicants.map(
+                  (app) => (
+
+                    <tr key={app.id}>
+
+                      <td>
+                        {app.name}
+                      </td>
+
+                      <td>
+                        {app.email}
+                      </td>
+
+                      <td>
+
+                        {app.resumeFilename ? (
+
+                          <a
+                            href={`${API_BASE_URL}/api/applications/resume/${app.resumeId}`}
+                            target="_blank"
+                            rel="noreferrer"
                           >
-                            Accept
-                          </button>
+                            Resume
+                          </a>
+
+                        ) : (
+                          "No Resume"
+                        )}
+
+                      </td>
+
+                      <td>
+                        {app.status}
+                      </td>
+
+                      <td>
+
+                        <span
+    className={`score-badge ${
+      app.atsScore >= 80
+        ? "high-score"
+        : app.atsScore >= 60
+        ? "medium-score"
+        : "low-score"
+    }`}
+  >
+    {app.atsScore}%
+  </span>
+
+                      </td>
+
+                      <td>
+
+                        {app.recommendation ===
+                        "Top Candidate" ? (
+
+                          <span className="top-candidate">
+                            ⭐ Top Candidate
+                          </span>
+
+                        ) : (
+                          app.recommendation
+                        )}
+
+                      </td>
+
+                      <td>
+
+                        {app.status ===
+                        "accepted" ? (
+
+                          <span className="accepted-label">
+                            ✔ Accepted
+                          </span>
+
+                        ) : app.status ===
+                          "rejected" ? (
+
                           <button
-                            className="reject-btn"
-                            onClick={() => handleStatusChange(app.id, "rejected")}
+                            className="delete-btn"
+                            onClick={() =>
+                              handleDelete(
+                                app.id
+                              )
+                            }
                           >
-                            Reject
+                            Delete
                           </button>
-                        </>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+
+                        ) : (
+
+                          <>
+
+                            <button
+                              className="accept-btn"
+                              onClick={() =>
+                                handleStatusChange(
+                                  app.id,
+                                  "accepted"
+                                )
+                              }
+                            >
+                              Accept
+                            </button>
+
+                            <button
+                              className="reject-btn"
+                              onClick={() =>
+                                handleStatusChange(
+                                  app.id,
+                                  "rejected"
+                                )
+                              }
+                            >
+                              Reject
+                            </button>
+
+                          </>
+                        )}
+
+                      </td>
+
+                    </tr>
+                  )
+                )}
+
               </tbody>
+
             </table>
+
           </div>
         )}
+
       </div>
+
     </div>
   );
 }

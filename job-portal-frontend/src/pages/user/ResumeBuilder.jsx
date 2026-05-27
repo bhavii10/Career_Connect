@@ -31,6 +31,10 @@ export default function ResumeBuilder() {
 
   const [isExportingPDF, setIsExportingPDF] = useState(false);
 
+  const [aiResult, setAiResult] = useState(null);
+
+  const [loadingAI, setLoadingAI] = useState(false);
+
   const previewRef = useRef(null);
 
   // ================= THEME =================
@@ -335,6 +339,53 @@ export default function ResumeBuilder() {
     setIsExportingPDF(false);
   };
 
+  // ================= AI ANALYSIS =================
+
+const analyzeResumeWithAI = async () => {
+
+  try {
+
+    setLoadingAI(true);
+
+    const payload = {
+
+      fullName: data.fullName,
+
+      summary: data.summary,
+
+      skills: skillList,
+
+      education: splitLines(
+        data.education
+      ),
+
+      experience: splitLines(
+        data.experience
+      ),
+
+      projects: splitLines(
+        data.projects
+      ),
+    };
+
+    const res = await axios.post(
+      `${API_BASE_URL}/api/ai/analyze-resume`,
+      payload
+    );
+
+    setAiResult(res.data.result);
+
+  } catch (err) {
+
+    console.error(err);
+
+  } finally {
+
+    setLoadingAI(false);
+  }
+};
+
+
   return (
 
     <div className={`rb-wrapper ${darkMode ? "dark" : ""}`}>
@@ -397,6 +448,16 @@ export default function ResumeBuilder() {
           </button>
 
           <button
+  className="rb-save-btn"
+  type="button"
+  onClick={analyzeResumeWithAI}
+>
+  {loadingAI
+    ? "Analyzing..."
+    : "Analyze with AI"}
+</button>
+
+          <button
             className="rb-dark-btn"
             type="button"
             onClick={toggleDarkMode}
@@ -413,6 +474,76 @@ export default function ResumeBuilder() {
           {message}
         </div>
       )}
+
+      {aiResult && (
+
+  <div className="ai-analysis-card">
+
+    <h2>
+      🤖 AI Resume Analysis
+    </h2>
+
+    <h3>
+      ATS Score:
+      {aiResult.atsScore}%
+    </h3>
+
+    <div className="ai-section">
+
+      <strong>
+        Recommended Roles:
+      </strong>
+
+      <ul>
+        {aiResult.roles?.map(
+          (role, index) => (
+            <li key={index}>
+              {role}
+            </li>
+          )
+        )}
+      </ul>
+
+    </div>
+
+    <div className="ai-section">
+
+      <strong>
+        Missing Skills:
+      </strong>
+
+      <ul>
+        {aiResult.missingSkills?.map(
+          (skill, index) => (
+            <li key={index}>
+              {skill}
+            </li>
+          )
+        )}
+      </ul>
+
+    </div>
+
+    <div className="ai-section">
+
+      <strong>
+        Suggestions:
+      </strong>
+
+      <ul>
+        {aiResult.suggestions?.map(
+          (tip, index) => (
+            <li key={index}>
+              {tip}
+            </li>
+          )
+        )}
+      </ul>
+
+    </div>
+
+  </div>
+)}
 
       {/* GRID */}
 
@@ -437,7 +568,7 @@ export default function ResumeBuilder() {
               name="fullName"
               value={data.fullName}
               onChange={onChange}
-              placeholder="Balreet Singh"
+              placeholder="Bhavisha Ahuja"
               required
             />
           </div>

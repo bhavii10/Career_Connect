@@ -34,12 +34,17 @@ export default function LandingPage() {
       <div className="content">
         <h1 className="main-title">
           <span>Welcome to</span>
-          <span className="highlight">Job Portal</span>
+          <span className="highlight">Career Connect</span>
         </h1>
 
-        <p className="subtitle">
-          Find your dream job or hire top talent in a platform built for success
-        </p>
+        <div className="subtitle">
+  <h2>A Smart Job Portal System</h2>
+
+  <p>
+    Find your dream job or hire top talent with a modern platform
+    built for seamless recruitment and career growth.
+  </p>
+</div>
 
         <div className="cards-container">
           {/* Job Seeker Card */}
@@ -128,3 +133,6 @@ export default function LandingPage() {
     </div>
   );
 }
+
+
+

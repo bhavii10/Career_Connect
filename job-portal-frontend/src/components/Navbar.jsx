@@ -250,7 +250,7 @@ export default function Navbar({ user, setUser, role = "user" }) {
   return (
     <>
       <nav className="navbar">
-        <div className="logo">JobPortal</div>
+        <div className="logo">CareerConnect</div>
 
         {/* ✅ NO <a href="/"> */}
         <ul className="nav-links">
