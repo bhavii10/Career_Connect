@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
-**🚀 Job Portal Application**
+**🚀 Career Connect Application**
 
 A full-stack MERN-based Job Portal designed to streamline the interaction between Job Seekers and Recruiters.
 
@@ -28,8 +28,6 @@ A full-stack MERN-based Job Portal designed to streamline the interaction betwee
 **🛠️ Tech Stack:
 MongoDB | Express.js | React.js | Node.js | CSS | JWT Authentication**
 =======
-# JobPortalApplication
->>>>>>> d05b14fea04ac8587fe007fbc8e021072416d7d8
-=======
+
 # Career_Connect
 >>>>>>> 42e1c57444a03015165d501cb598e527e202bc8c
